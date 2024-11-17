@@ -1,0 +1,355 @@
+git --version                                                      ## To check the current version of git
+
+git config --global user.name "ALSPraveen"                         ## To add your github account user name
+
+ git config --global user.email "saipraveenakurathi@gmail.com"     ## To add your github account email
+
+ git config --global --list                                        ## To list the config settings
+
+ git config --global init.defaultBranch main                       ## Update git settings to use main as default branch
+
+git init                                                           ## Initialize git repository
+
+ git init -b main Gitbash-demo                                     ## Specifying and creating a git local repository with default branch main
+
+ git init Gitbash-demo                                             ## Creates & Initializes a git repository
+
+git status                                                         ## Git checks if there are any updates made in the repo
+
+git add Commands.txt                                               ## Adds the file to the staging area
+
+ git add .                                                         ## Adds all the files to the staging area
+
+git commit -m "First commit"                                       ## Commits all the files in the local repository
+
+ git commit -am "Adds & Commits"                                   ## Adds and Commits the files with the same command
+
+git commit --amend                                                 ## Change commit message.By default you can change message for latest commit(An editor will open , change message save and close)
+
+git rebase -i 3ar456v                                              ## An editor will open , change pick to edit for the hash id you like
+  
+   git commit --amend                                                 Now you can edit the mesage
+
+git push origin main                                               ## pushes to the remote repository
+
+ git push                                                          ## Shorter version of push Command
+
+ git push -u origin main                                           ## sets up stream  and stores location of the branch so that next time when we use "git push" it automatically refers to up stream location
+
+git remote -v                                                      ## To list the origin set in remote
+
+ git remote add origin https://github.com/ALSPraveen/Gitbash-Demo.git  
+                                                                   ## To set the origin when no origin is set
+
+ git remote set-url origin https://github.com/ALSPraveen/Gitbash-Demo.git  
+                                                                   ## If the origin is already set and you want to change it.
+
+ git remote add backup <remote-url>                                ## It has backup as location insted of origin 
+
+ git fetch origin                                                          ## It fetches the differences between repos in local and remote
+
+git pull origin main                                               ## git fetch + git merge
+
+git ls-files                                                       ## Shows all the files git is tracking
+
+
+
+Git can unstage all the staged files . Use the following command to back out all the changes from staging area
+
+git restore --staged Commands.txt
+
+
+You can discard the changes from the unstaged file to working directory 
+
+git checkout -- Commands.txt 
+
+
+
+git mv file1.txt file1-renamed.txt                                 ## With git mv command , git understands that file is renamed & changes were done at remote level and we only need to commit the changes.
+
+ mv file1.txt file1-renamed.txt                                    ## At operating system level , we need to git understands it as the file is deleted and new file has been created,So we need to add changes to                                                                       staging area and then commit it.
+
+ git add -A                                                        ## -A parameter lets git know of renamed , deleted or moved files and add them to staging area.
+
+
+
+git log 
+
+ git log --abbrev-commit                                           ## Shortens commit id
+
+ git log --online --graph --decorate                               ## Lists commits in on line , decorates and adds labels 
+
+ git log 78956...gv99977                                           ## Lists commits between those commit ids
+
+ git log --since="3 days ago"                                      ## Lists commits that happened in the last three days
+
+ git log -- file.txt                                               ## Lists commits done to that specific file
+
+ git log --follow file.txt                                         ## Lists commits done for renames
+
+ git log --grep="My Commit Messsage"                               ## Searching commits based on commit ID
+
+ git show 78956                                                    ## Lists out the commit ID details 
+
+
+git show 7899ECD                                                   ## Gives more specific details of commits, what ha been committed and all
+
+git clean -n                                                       ## Shows which untracked files would be removed
+
+ git clean -f                                                      ## Removes untracked files
+
+ git clean -fd                                                     ## Removes untracked files & directories
+
+ git clean -iX                                                     ## Removes untracked files & ignored files interactively
+
+
+
+.gitignore                                                         ## Mention files and directories you want to ignore in that .gitignore
+
+ ignoring-file.txt                                                 -- File
+ ignoring-directory/                                               -- Directory
+
+
+Git tracking flow,
+
+Working directory ->   Staging area   -> .git local repositori   ->  remote repository
+(modified changes)   (Added to staging)   (committed changes)        (pushed to github)
+
+
+git diff                                                           ## It gives the difference between files in working and staging area
+
+ git difftool                                                      ## same as diff but a visual difftool will be opened
+
+git diff HEAD                                                      ## It gives the difference between files in working directory and last commmited files
+ 
+ git difftool HEAD                                                 ## same as diff but a visual difftool will be opened
+
+
+git diff --staged HEAD                                             ## It gives the difference between files in staged area and last commmited files
+ 
+ git difftool --staged HEAD                                        ## same as diff but a visual difftool will be opened  
+
+
+git diff  f9245 654f43                                             ## It gives the difference between mentioned commit ids
+ 
+ git difftool --staged HEAD                                        ## same as diff but a visual difftool will be opened 
+
+ 
+git diff  f9245 HEAD                                               ## It gives the difference between mentioned commit id and HEAD
+
+                                                                      Here HEAD refers to last commit id
+
+git diff HEAD HEAD^                                                ## It gives difference between HEAD commit and HEAD commit -1
+
+
+git diff main origin/main                                          ## It gives difference between local repo and remote repo
+
+
+Branches :
+
+git branch -a                                                      ## Lists the branches associated with the git repo
+
+ git branch newbranch                                              ## Create a new branch
+
+ git checkout newbranch                                            ## Switches to the new branch
+
+ git branch -m newbranch branch                                    ## Renaming a branch
+
+ git branch -d newbranch                                           ## deleteing a branch
+
+ git checkout -b praveen                                           ## Creates and switches to the new branch
+
+ git branch praveen <commit SHA>                                   ## Creates a barch with from the commit ID
+
+
+
+ Merging feature branch into main branch:
+
+git merge feature                                                 ## First commit the changes in feature branch , then checkout to main and perform merge .It will merge the changes done in feature branch to mai                                                                     n branch
+
+git diff feature main                                             ## Can see the difference between feature and  main branches.
+
+git merge feature --no-ff                                         ## No fast forward option, preserves commits
+
+
+Resolving conflicts,
+
+Whenever there is a modification made in excat file in two or more different branches , a conflict arises.
+
+git mergetool                                                     ## it will open a mergetool and asks for possible combination of merges , choose that and exit .
+                                                                     Commit the changes after resolving the conflit
+
+
+git rebase main                                                   ## if you want the changes done in main branch to reflect in feature branch , you have to rebase it.
+                                                                     Run this command in feature branch
+
+ git rebase --abort                                               ## When there is rebase conflict , you can use this command to come out of rebase
+
+ git rebase --continue                                            ## After you resolve rebase conflict using "git mergetool" , then add the file to staging area , commit it and run continue command to completre                                                                     rebase
+
+
+
+How can others clone your private repository ?
+
+1.Create a private repository
+2.Settings of private reo -> Collaborators -> Add people -> type username of the individual who needs access
+3.Your friend should use below command to clone it
+
+  https://<friend_username>:<Personal_Access_Token>@github.com/ALSPraveen/Private-repo.git
+  Note : your freind should have a PAT set up in his account already to authenticate the identify.
+
+
+Steps to set up PAT :
+1.Go to Settings -> Developer settings
+2.Go to classical tokens
+3.Give the permissions required
+4. Submit , you will see a token created , copy it (you can only see it once)
+
+
+How to reset commits?
+
+git reset --hard HEAD                                                         ## resets the commits and deletes the previous commits
+
+ git reset --hard 2f345                                                       ## resets the commits using commit ID
+
+ git reset --hard HEAD^1                                                      ## Resets the commits to HEAD -1
+
+
+
+git revert 2f345                                                              ## Same as reset but preserves the commit .
+
+
+
+Reset should be used when the changes are not yet pushed to remote repo
+
+Revert should be used when the changes are pushed to remote repo 
+
+
+How to cherry Pick?
+
+git cherry-pick <commit ID>                                                   ## Often we use this to make changes to different branch based one another branch
+
+
+
+
+Concept of Stashing(Temporary saving of files)
+
+git add .                                                                     ## For stash to work they need to be in tracked mode.
+
+git stash save "Add changes"                                                  ## Saves the stash with a stash ID
+
+git stash list                                                                ## Lists out all the stashes
+ 
+git stash apply <stash ID>                                                    ## Applies the saved Stashes and does not drop the stash
+
+git stash pop                                                                 ## Applies the top most stash and drops the stash
+
+git stash drop <stash ID>                                                     ## Just drops the stash but do not chnage anything in the directory
+
+git stash clear                                                               ## Just drops alll the statshes at onec and do not make any changes to directory
+
+
+Concept of tagging(To save your commits historically and send them as releases)
+
+(You will need to commit before tagging)
+
+git tag v1.0                                                                  ## Create a tag
+
+ git tag                                                                      ## List the tags
+
+ git tag -a v1.1 -m "My message"                                              ## Annotated tag (same as normal tag but we can give a message here)
+
+git show v1.1                                                                 ## Shows the changes of that tag
+
+git tag -l "v1.*"                                                             ## Shows list of all the tags v1.*
+
+git push origin v1.1                                                          ## Push to repo(once pushed u will see releases get updated in github)
+
+ git push origin --tags                                                       ## pushes all tags at once
+
+git tag -d v1.1                                                               ## delete tags(does not delete from repo , only deletes from local)
+
+ git tag --delete v1.1                                                        ## another way to delete tags
+
+git push origin -d v.1                                                        ## delete from repo
+
+git checkout -b feature v1.1                                                  ## Create new branch based on tag
+
+git tag v1.2 f23dt456                                                         ## Create a tag from a previous commit
+
+
+
+
+Concept of submodules(To add other projects dependencies/libraries as part of your current project)
+
+git submodule add <git repo URL>                                              ## Adds other project folder to your current project
+
+git submodule update --init --recursive                                       ## If you clone your repo and it containes submodules, basically the submodules will be empty.To get all the data we need to initail                                                                                 aize the submodule recursively
+
+git clone --recurse-submodules <git repo URL>                                 ## Same as above , we can do it with one command
+
+ cd /path/to/submodule - git pull origin main                                 ## To pull changes from submodule
+
+
+Concept of reflog (Logging system for everything that happens in git)
+
+git reflog                                                                    ## Shows all the logging in git
+
+
+
+Concept of Blame(We can know who , where and when changes were made to particular files)
+
+git blame Commands.txt                                                        ## Will show details of who, when ,where changes were made to file
+
+git blame -L 4,8 Commands.txt                                                 ## Will show lines 4 to 8
+
+git blame -L 5,+3 Commands.txt                                                ## Will show lines from 5, 6,7
+
+git blame -s Commands.txt                                                     ## Will suppress author info
+
+git blame -s -L 10,18 Commands.txt
+
+git blame -e Commands.txt                                                     ## Authors email instaed of username
+
+git blame -f Commands.txt                                                     ## Filename in the original commit
+
+git blame -n Commands.txt                                                     ## Show line number in original commit
+
+
+Concept of Bisect( Binary search to find out the good and bad commits)
+
+
+git bisect start                                                              ## Start the bisect
+
+git bisect good <Commit SHA>                                                  ## That means it is a good commit
+
+git bisect bad                                                                ## This is a bad commit 
+
+git bisect reset                                                              ## Resets to how it used to be before "git bisec start"
+
+git bisect log                                                                ## displays the flow of git bisect
+
+
+
+
+Concept of git hooks
+
+(We can use git hooks to automate some tasks like post commit , pre commit options)
+(.git folder contains hooks folder and in that folder you can create a post commit file and give executable option and whenever you execute commit , it will trigger post commit file )
+
+
+Concept of git squash
+(It is used to combine multiple commits into a single commit)
+
+git rebase -i HEAD~3                                                         ## an editor will open with last three commit hashes. for first commit let it be pick , for the rest of the two make it squash, save                                                                                 and close)
+ 
+
+Concept of cloning only particular folder from git repo,
+
+git clone --no-checkout https://github.com/ALSPraveen/Maven-Examples.git     ## The --no-checkout flag prevents Git from automatically checking out the entire repository
+
+git config core.sparseCheckout true                                          ## This step configures Git to allow sparse checkouts, which means only specific parts of the repository will be checked out.
+
+echo "assembly-plugin" >> .git/info/sparse-checkout                          ## The .git/info/sparse-checkout file is used to define which parts of the repository should be checked out.
+
+git checkout main                                                            ## This command will checkout only the files in the specified directory.
