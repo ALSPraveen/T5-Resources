@@ -1,0 +1,80 @@
+user@workspacemrz71wegoq6810be:/projects/challenge$ mvn clean install
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building PrimeSum 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ PrimeSum ---
+[INFO] Deleting /projects/challenge/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ PrimeSum ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /projects/challenge/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.3:compile (default-compile) @ PrimeSum ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to /projects/challenge/target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[2,24] package org.junit does not exist
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[2,1] static import only from classes and interfaces
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[3,17] package org.junit does not exist
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[5,6] cannot find symbol
+  symbol:   class Test
+  location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[11,6] cannot find symbol
+  symbol:   class Test
+  location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[17,6] cannot find symbol
+  symbol:   class Test
+  location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[9,9] cannot find symbol
+  symbol:   method assertEquals(int,long)
+  location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[15,9] cannot find symbol
+  symbol:   method assertEquals(int,long)
+  location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[21,9] cannot find symbol
+  symbol:   method assertEquals(int,long)
+  location: class javaApp.PrimeSumTest
+[INFO] 9 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.470 s
+[INFO] Finished at: 2022-09-09T04:38:40+00:00
+[INFO] Final Memory: 19M/779M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.3:compile (default-compile) on project PrimeSum: Compilation failure: Compilation failure:
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[2,24] package org.junit does not exist
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[2,1] static import only from classes and interfaces
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[3,17] package org.junit does not exist
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[5,6] cannot find symbol
+[ERROR] symbol:   class Test
+[ERROR] location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[11,6] cannot find symbol
+[ERROR] symbol:   class Test
+[ERROR] location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[17,6] cannot find symbol
+[ERROR] symbol:   class Test
+[ERROR] location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[9,9] cannot find symbol
+[ERROR] symbol:   method assertEquals(int,long)
+[ERROR] location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[15,9] cannot find symbol
+[ERROR] symbol:   method assertEquals(int,long)
+[ERROR] location: class javaApp.PrimeSumTest
+[ERROR] /projects/challenge/src/test/java/javaApp/PrimeSumTest.java:[21,9] cannot find symbol
+[ERROR] symbol:   method assertEquals(int,long)
+[ERROR] location: class javaApp.PrimeSumTest
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

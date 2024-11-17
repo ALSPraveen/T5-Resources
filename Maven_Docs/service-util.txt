@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.fresco.play</groupId>
+  <artifactId>service</artifactId>
+  <version>1.0</version>
+  <name>service</name>
+  <parent>
+  <groupId>com.fresco.play</groupId>
+    <artifactId>maven-multi-modules</artifactId>    
+    <version>1.0</version>
+  </parent>
+  <packaging>jar</packaging>
+  
+  
+  <!-- Insert you configurations here -->
+  <dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        
+        <scope>test</scope>
+    </dependency>
+    </dependencies>
+    <build>
+    	<!-- Configure Plugin Management here -->
+      <plugins>        
+          <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                
+            </plugin>
+          </plugins>
+
+        
+    </build>
+
+</project>
+
+
+
+---------------------------
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.fresco.play</groupId>
+  <artifactId>util</artifactId>
+  <version>1.0</version>
+  <name>util</name>
+  <parent>
+  <groupId>com.fresco.play</groupId>
+    <artifactId>maven-multi-modules</artifactId>    
+    <version>1.0</version>
+  </parent>
+  <packaging>jar</packaging>
+  
+  <!-- Insert you configurations here -->
+  <dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    
+</dependency>
+
+</dependencies>
+
+    <build>
+    	<!-- Configure Plugin Management here -->
+      <plugins>        
+          <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+               
+            </plugin>
+          </plugins>
+
+        
+    </build>
+
+</project>

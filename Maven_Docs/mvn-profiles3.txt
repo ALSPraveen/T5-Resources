@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.fresco.play</groupId>
+  <artifactId>maven-profile-explicit</artifactId>
+  <packaging>jar</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>maven-profile-explicit</name>
+  <!-- Insert your configurations here -->
+  <dependencies>
+  <dependency>
+  <groupId>junit</groupId>     <!-- NOT org.junit here -->
+  <artifactId>junit-dep</artifactId>
+  <version>4.8.2</version>
+  <scope>test</scope>
+</dependency>
+  </dependencies>
+  <properties>
+ <maven.compiler.source>1.8</maven.compiler.source>
+ <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+ 
+ 
+ 
+  <!-- STEP 1 -->
+  <profiles>
+        <profile>
+   <id>dev</id>
+   <activation>
+      <activeByDefault>true</activeByDefault>
+    </activation>    
+   <properties>
+   <db.env>dev</db.env>
+   <db.url>jdbc:mysql://localhost:3306/dev</db.url>
+   <db.username>devuser</db.username>
+   <db.password>devpwd</db.password>
+   </properties>
+ </profile>
+        <profile>
+   <id>qa</id>          
+   <properties>
+   <db.env>qa</db.env>
+   <db.url>jdbc:mysql://serv01:3306/qa</db.url>
+   <db.username>qauser</db.username>
+   <db.password>qapwd</db.password>
+   </properties>
+ </profile>
+ <profile>
+   <id>prod</id> 
+           
+   <properties>
+   <db.env>prod</db.env>
+   <db.url>jdbc:mysql://live01:3306/prod</db.url>
+   <db.username>produser</db.username>
+   <db.password>******</db.password>
+   </properties>
+ </profile>
+   </profiles>
+   <build>
+   <execution>
+        <id>default-resources</id>
+            <phase>process-resources</phase>
+        <goals>
+            <goal>resources</goal>
+        </goals>
+        <configuration>
+            <resources>
+                <resource>
+                    <directory>src/main/resources</directory>
+                    <filtering>true</filtering>
+                </resource>
+            </resources>
+            <filters>
+                <filter>${basedir}/src/main/id/config.properties</filter>
+            </filters>
+        </configuration>
+    </execution>
+    </build>
+    
+   
+</project>

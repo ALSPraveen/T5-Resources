@@ -1,0 +1,14 @@
+ mkdir sampleWar && cd $_
+
+ mvn archetype:generate -DgroupId=com.praveen -DartifactId=samplejar -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+ mvn archetype:generate -DgroupId=com.praveen -DartifactId=samplejar -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
+ mvn help:effective-pom
+ 
+ mvn help:describe -Dplugin=jar
+
+ java -cp target/samplejar-1.0-SNAPSHOT.jar com.praveen.App
+
+
+mvn clean package -P qa,dev  ----------activate profiles
