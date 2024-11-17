@@ -1,0 +1,136 @@
+Nginx container :
+
+* Nginx (pronounced "engine-x") is a powerful open-source web server and reverse proxy server. 
+
+Here are some key features and characteristics of Nginx:
+
+High Performance: Nginx is known for its exceptional performance, especially in handling concurrent connections and serving static content efficiently. 
+                  Its event-driven architecture allows it to handle thousands of simultaneous connections with minimal resource consumption.
+
+Reverse Proxy: Nginx can act as a reverse proxy server, forwarding client requests to other servers or applications. 
+               This is commonly used for load balancing, caching, and improving security by shielding backend servers from direct exposure to the internet.
+
+Load Balancing: Nginx includes built-in support for load balancing across multiple backend servers. 
+                It can distribute incoming client requests among backend servers based on various algorithms such as round-robin, least connections, or IP hash.
+
+HTTP Server: Nginx is a capable HTTP server, capable of serving static content such as HTML, CSS, and JavaScript files. 
+             It also supports various features like URL rewriting, SSL/TLS encryption, and HTTP/2 protocol.
+
+Reverse Proxy Caching: Nginx can cache responses from backend servers, reducing the load on those servers and improving overall performance. 
+                       It supports caching of both static and dynamic content, with flexible configuration options.
+
+Modular Architecture: Nginx follows a modular architecture, allowing administrators to extend its functionality through third-party modules or by writing custom modules. 
+                      This flexibility makes it adaptable to a wide range of use cases and environments.
+
+Scalability: Nginx is highly scalable, capable of handling large volumes of traffic and distributing it across multiple servers efficiently. 
+             Its lightweight nature and efficient resource utilization make it well-suited for high-traffic websites and applications.
+			 
+******Docker container for Nginx *******			
+
+docker run -d -name nginxcontainer -p 80:80 nginx
+
+Static HTML content will be stored inside container  at '/usr/share/nginx/html' as 'index.html'
+
+
+
+
+
+
+
+################################################################################################################################################################
+
+HTTPD web server:
+
+HTTPD stands for "HyperText Transfer Protocol Daemon," and it typically refers to the Apache HTTP Server. The Apache HTTP Server, often referred to simply as Apache, is one of the most widely used open-source web servers in the world. It is developed and maintained by the Apache Software Foundation.
+
+Here are some key points about the Apache HTTP Server:
+
+Web Server: Apache HTTP Server is primarily used as a web server software, serving HTTP and HTTPS requests from clients, typically web browsers, to deliver web content.
+
+Cross-Platform: Apache HTTP Server is cross-platform and runs on various operating systems, including Linux, Unix, macOS, and Windows.
+
+Open Source: Apache HTTP Server is open-source software released under the Apache License, making it freely available for anyone to use, modify, and distribute.
+
+Modular Architecture: Apache HTTP Server follows a modular architecture, allowing administrators to extend its functionality through modules. Apache modules can add features such as authentication, URL rewriting, proxying, and more.
+
+Robust and Scalable: Apache HTTP Server is known for its stability, reliability, and scalability. It can handle a large number of simultaneous connections and scale well to accommodate high-traffic websites.
+
+Configuration: Apache HTTP Server's configuration is typically done through text-based configuration files, such as httpd.conf. Administrators can customize various aspects of server behavior, including virtual hosts, directory settings, access control, and logging.
+
+Support for Dynamic Content: Apache HTTP Server supports server-side scripting languages such as PHP, Python, and Perl, allowing developers to create dynamic web applications and websites.
+
+Security Features: Apache HTTP Server includes features for securing web applications and servers, including SSL/TLS encryption, access control, authentication mechanisms, and security modules.
+
+Overall, Apache HTTP Server is a versatile and powerful web server software widely used for hosting websites, web applications, and services on the internet. Its long history, robust features, and active community make it a popular choice for both small-scale and large-scale web deployments.
+ 
+******Docker container for HTTPD *******			
+
+docker run -d -name httpdcontainer -p 80:80 httpd
+
+Static HTML content will be stored inside container  at '/usr/local/apache2/htdocs/' as 'index.html'	
+
+
+
+
+
+
+
+################################################################################################################################################################
+
+Node js application as docker container :
+
+Node.js is one such popular standalone JavaScript runtime environment. It allows JavaScript code to be executed on servers or other computing environments outside of the browser. Node.js includes the V8 JavaScript engine, originally developed by Google for the Chrome web browser, as well as additional features such as file system access, networking capabilities, and a package manager (npm).
+
+docker run --rm -p 8071:8070 --name samplenode servernodeap
+
+
+
+
+
+
+
+################################################################################################################################################################
+
+PHP + Apche application as docker container :
+
+
+In summary, a PHP application is a software application written in PHP that runs on a web server to generate dynamic web pages, interact with databases, and provide server-side functionality for web development. PHP is widely used for building various types of web applications, ranging from simple websites to complex enterprise-level systems.
+
+docker run --rm -d --name phpc -p 8060:80 php:v1
+
+
+While writing dockerfile we need to export libraries for php application to container as well
+
+
+
+
+
+
+################################################################################################################################################################
+
+Mysql Server as docker conatiner :
+
+**********************************************************************              
+sudo apt purge mysql-server*                                         *
+                                                                     *
+Command to delete all linux packages related to Mysql server instance*
+**********************************************************************
+
+ docker run --name mysql-instance -e MYSQL_ROOT_PASSWORD=sqlset1010 -d -p 3306:3306 mysql
+ 
+ After creating mysql container , we need to connect to mysql db .For that we need to install mysql client 
+ 
+ 
+ sudo apt-get update
+ 
+ sudo apt install mysql-client
+ 
+ mysql -h 127.0.0.1 -u root -p sqlset1010   ## loopback address 
+ 
+ 
+ 
+ ***********************************************************************
+ 
+ apt-get install iputils-ping -y --Ping Command installation
+ 
+ ***********************************************************************

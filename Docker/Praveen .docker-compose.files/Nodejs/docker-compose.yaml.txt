@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+   webapp:
+    image: customeimage # This image should be built already and should be present in your local.
+    ports:
+      - 80:80

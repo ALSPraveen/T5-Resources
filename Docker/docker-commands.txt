@@ -1,0 +1,180 @@
+Docker Commands :
+
+docker version                           # To know the version fo docker installed
+
+docker info                              # Detailed info of images/containers used 
+
+service docker stop                      # Stop docker daemon
+
+service docker start                     # Start docker daemon
+
+docker ps                                # All running containers
+
+docker ps -a                             # All stopped and running containers
+
+docker images                            # shows all the docker images in your local
+
+docker history nginximage                # Histoy of commands run on that image
+
+docker search nginx | head               # Search for image in dockerhub through docker command 
+
+docker pull nginx                        # Checks your local for the image ,if not found,it will go to dockerhub and gets it
+
+docker rmi nginx                         # To remove the docker image
+                                           ( In case some container is using it , first kill the container)
+										   
+docker rm nginx-container                # To remove container
+                                           ( In case the container is running , stop the cotainer)
+										   
+										   
+docker stats <container name>/<container id>
+                                         # Gives memory, cpu e.tc usage stats
+
+docker pause <container id>              # Pauses the service(The url will continue to reload (hangs) and no changes will be reflected)
+	
+docker unpause <container id>            # Unpauses the service and url reloads quickly 
+	
+										   
+docker run -d --name nginxcontainer -p 8080:80 nginximage
+
+                                         # Command to run the container (-p is for port binding. Nginx web server runs on port 80 on default port 
+										   We need to expose it to outside of container to access the service)
+										   
+docker run --rm -d --name nginxcontainerrm -p 80:80 nginximage 
+                                         
+                                         # Command to remove container after we stop container
+										 
+docker run --rm --network=host -d --name nginxcontainerrm  nginximage
+                                         
+                                         # Command to use host machines network stack. You can access application at http://localhost										 
+
+docker build -t nginx:v2 .				 # Build our Dockerfile into an image and names it nginx:v2	
+
+docker tag nginx:v2 nginx:v1             # change Version tagging	
+
+docker stop $(docker ps -q)		         # Command to stop all running containers at once 
+
+docker cp ./test.txt mycontainer:/var/www/html 
+                                         # Command to copy  files from local to your container (The container can be running or stopped)
+
+docker cp mycontainer:/var/www/html ./test.txt 
+                                         # Command to copy  files from container to your local (The container can be running or stopped)
+
+docker network ls                        # Lists all the networks which containers are connected to
+
+docker network create app-network        # Create a default bridge network
+
+docker network connect app-network mycontainer  
+                                         #  Connecting our custom network to our container , This will create a new ip address with new network so as to not disturb the current container working.
+
+docker run --rm --network=app-network -d --name nginxcontainerrm  nginximage 
+                                         # Attaching our created network to a container
+
+docker network create staging-network --subnet=10.0.0.0/16  # Create sub networks
+
+docker network rm app-network            # Removing the network
+
+docker run --rm -d --mount type=bind,source=/home/asaiprav/wings1/docker/nginxe,target=/usr/share/nginx/html --name bindc -p 8086:80 nginx
+
+                                         # Binding the local mount to a container mount .So any change in local mount will automatically reflect in container mount 
+										   (Not recommended in Production environment)
+										   
+/docker-entrypoint-initdb.d/             # If any files are copied into this location , these will get executed automatically once container starts
+
+docker volume ls                         # Lsiting volumes
+
+docker volume create test-volume         # Create our custom volumes
+
+docker volume rm test-volume             # Remove our custom volumes
+
+docker run --rm -d -p 8080:8080 -p 50000:50000 -v jenkins_data:/var/jenkins_home --name jenkinsconatiner jenkins/jenkins:lts-alpine # Here 8080 is defalut port for jenkins & 50000 is port for communication between jenkins agents(Master and slave)
+
+docker rm -f mycontainer                 # Force delete containers
+
+docker rmi -f myimage                    # Force delete images
+
+>>> Publish Images to dockerhub(Public Repos)
+
+docker login                             # Dockerhub login 
+
+docker tag nginximage 1928891/nginximage:altest
+                                         # Tagging the image with our account username
+										 
+docker push 1928891/nginximage:altest    # Push to dockerhub
+
+
+										   
+################################################################################################################################################################
+When you try to expose to a port which is already allocated we get below error.
+
+docker: Error response from daemon: driver failed programming external connectivity on endpoint nginxcontainer1 (e516215b2e8cd7f1c58dd5a64fec2c2bdffc5c15cc51b1682dd8dbad6b89b746): Bind for 0.0.0.0:8080 failed: port is already allocated.
+
+################################################################################################################################################################
+
+netstats -tuln | grep 8080                # Command to check if the port is open and listening 
+
+docker kill nginxscontainer              # Kill running container
+
+docker start nginxscontainer             # Start the same container: 
+                                         
+docker stop nginxscontainer              # Stop the running container
+
+docker container prune                   # Removes all stopped containers 
+
+################################################################################################################################################################
+
+--we can export the entire container file system to a tar file 
+
+docker run -d --name nginxcontainer -p 8080:80 nginximage
+
+docker export nginxcontainer > test.tar
+
+tar -xvf test.tar
+
+--Once you peroform above operations you can see all the directories of a container
+
+################################################################################################################################################################
+
+docker logs <container id>               # Shows logs
+
+docker exec -ti <container id> bash      # Interactive terminal of conatiner id
+                                           (only works if container is in running mode)
+
+										   
+################################################################################################################################################################
+
+Ways to run ubuntu image, it(interactive psuedo terminal)
+										   
+docker run -d -ti ubuntu                 # Run an interactive session with ubuntu container 
+
+docker attach <container id from above command> # Attach the container to get into ubuntu terminal 
+										   
+################################################################################################################################################################
+
+CMD command in Dockerfile acts as default that will run when container starts and it can be overwritten.
+
+ENTRYPOINT command in Dockerfile acts as MAIN command that will run when container starts and it cannot be overwritten.
+
+->If we use CMD alone, without ENTRYPOINT, it allows users to override the command specified in the Dockerfile when running the container. 
+  
+  For example, docker run my_project python some_other_script.py would execute some_other_script.py instead of app.py.
+
+->If we use ENTRYPOINT alone, without CMD, it specifies the main command to be executed when the container starts, but doesn't allow additional arguments to be passed easily. 
+  
+  For example, docker run my_project python some_other_script.py would still execute app.py.
+  
+################################################################################################################################################################
+
+
+Concept of Caching :
+
+If there is any change in dockerfile , docker recognizes it and re exceutes al the steps from the step where change occured.
+
+Rearranging of steps in dockerfile will help to cache 
+
+################################################################################################################################################################
+
+.dockerignore
+
+create a file -> mention files that can be ignored -> docker will ignore those files while building the custom image
+
