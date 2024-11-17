@@ -1,0 +1,156 @@
+T5 Complete Road Map 
+
+Tools you need to have in your Desktop :
+1) Ubuntu terminal 22.04 LTS or lower
+2) Visual Studio Code 
+3) Docker desktop - Not mandatory but useful
+
+
+Plan : Jira
+
+Installation    	: Not Needed
+Learning Source 	: Youtube - Edureka Channel
+					  https://youtu.be/nHuhojfjeUY?si=hmBrWbmBJjXKfxnU
+T5 MSQs         	: Might ask a few Questions
+T5 Handson      	: No
+Mandatory to learn  : No
+
+**********************************************************************************************************************
+
+Code : Git
+
+Installation    	: Install Git in Ubuntu Terminal
+                      https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-22-04
+					  
+					  (or)
+					  Install git bash
+					  https://git-scm.com/downloads/win
+                       
+Learning Source 	: Udemy       - Git Complete: The definitive, step-by-step guide to Git by Jason Taylor
+                      Fresco Play - Prodigious Git & Interstellar Git
+ 
+T5 MSQs         	: Some portion of MCQs will be based on git
+T5 Handson      	: Yes
+Mandatory to learn  : Yes
+Remarks             : Create github account , install git bash .Practice  Jasons content
+
+**********************************************************************************************************************
+
+
+Build : Maven, Gradle
+
+Installation    	: Install Maven & Gradle in Ubuntu Terminal
+                      Maven  - https://www.digitalocean.com/community/tutorials/install-maven-linux-ubuntu
+					  Gradle - https://vegastack.com/tutorials/how-to-install-gradle-on-ubuntu-22-04/
+					  
+					
+                       
+Learning Source 	: Udemy       - Maven Crash Course by Bharat Thippireddy
+                      Fresco Play - Maven Coalescing pipeline, Maven Build Connoisseur
+					                Gradle - Fabricating Systems
+ 
+T5 MSQs         	: Some portion of MCQs will be based on Maven,Gradle
+T5 Handson      	: Yes
+Mandatory to learn  : Yes
+Remarks             : Complete all handson from Fresco Play
+                      Tryouts - Adavanced questions on Maven,Gradle
+					  Maven is mandatory , gradle can be opted out if you find it difficult
+					  
+					  
+**********************************************************************************************************************
+
+
+-	Deploy : Docker
+
+	Installation    	: Install Docker  in Ubuntu Terminal
+						  https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04 
+						
+						   
+	Learning Source 	: Udemy       - Docker and Kubernetes your complete guide by Alan Rodriguez,
+										Docker for absolute beginers bu Mumshad
+						  Fresco Play - Docker container orcas, Docker Magneta,Docker Swarm
+						  Youtube     - Techworld with Nana              
+	 
+	T5 MSQs         	: Some portion of MCQs will be based on Maven,Gradle
+	T5 Handson      	: Yes
+	Mandatory to learn  : Yes
+	Remarks             : Complete all handson from Fresco Play
+						  Learn how to write custom images(Dockerfiles) and docker compose files 
+						  Docker Compose is extreamly important and mostly your handson will be in that.
+						  
+-	Deploy : Kubernetes
+
+	Installation    	: Follow my attachment for installation of minikube and kubectl
+						
+						   
+	Learning Source 	: Udemy       - Docker and Kubernetes your complete guide by Alan Rodriguez,
+										Kubernetes for absolute beginers bu Mumshad
+						  Fresco Play - Kubernetes k8s basics, Kuberenetes seasoned guide , kubernetes ultimate guide
+						  Youtube     - Techworld with Nana
+                                        https://youtu.be/X48VuDVv0do?si=Pb9oGT2851isBHTU						  
+	 
+	T5 MSQs         	: Some portion of MCQs will be based on Kubernetes
+	T5 Handson      	: Not sure( I did not come across any questions in wings on K8s)
+	Mandatory to learn  : Yes
+	Remarks             : Complete all handson from Fresco Play
+						  Very complex to learn. Keep it as your last tool to learn.If time permits learn it
+						  Kuberenetes is most widely used in many companies. Hence it would be great to learn for future.
+						  
+**********************************************************************************************************************
+
+
+CI/CD : Jenkins
+
+Installation    	: Install Jenkins from jenkins Image using Docker
+					  					
+                       
+Learning Source 	: Youtube     - https://youtu.be/FX322RVNGj4?si=EYjkfdDhOuKQC0ah
+                      Fresco Play - Continuos Integration with Jenkins
+					                
+ 
+T5 MSQs         	: Some portion of MCQs will be based on Jenkins
+T5 Handson      	: Yes
+Mandatory to learn  : Yes
+Remarks             : Complete all handson from Fresco Play
+                      Tryouts - Adavanced questiosn on Jenkins
+					  Make sure you practice different types of questions
+					 
+					  
+**********************************************************************************************************************
+
+
+Operate : Ansible
+
+Installation    	: Install Ansible in Ubuntu Terminal
+					  					
+                       
+Learning Source 	: Fresco Play - Ansible sibilius, Ansible Choral
+                      Udemy       - Ansible for beginers by Mumshad
+					  Youtube     - Techworld with Nana
+					                
+ 
+T5 MSQs         	: Some portion of MCQs will be based on Jenkins
+T5 Handson      	: Not sure 
+Mandatory to learn  : Yes
+Remarks             : Complete all handson from Fresco Play
+                      Tryouts - Adavanced questions on Ansible
+					  Make sure you practice different types of questions
+					 					  
+					  
+					  
+**********************************************************************************************************************
+				  
+
+The above tools will mostlu ensure your clearance of T5 MCQs and Handson
+For MCQs you will need to learn basics of Azure and AWS
+Frescoplay - Azure Essentials and AWS Essentials
+
+Below learning is not as important , but comes under T5 curriculum
+
+Test    - Junit , Selenium
+Monitor - Nagios , Prometheus
+
+I dont have any resources for above tools but you can search online.
+
+
+*************************************ALL THE BEST*********************************************************************
