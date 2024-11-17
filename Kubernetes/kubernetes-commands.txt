@@ -1,0 +1,131 @@
+Start docker daemon -> sudo service docker start
+
+start minikube      -> minikube start
+
+The above two steps will set up your kubernetes cluster 
+
+kubectl -h          -> Help commands
+
+kubectl api-resources --namespaced=true
+
+minikube addons enable ingress  -- Enables ingress controller on minikube k8s cluster
+
+==================================================================================================================================================================================
+
+minikube status                                            # shows the status of kubernetes master node
+
+miniukube tunnel                                           # To expose your service
+
+ minikube service nginx-service --url  
+
+minikube dashboard                                         # It shows all the services deployed in a dashboard 
+
+kubectl version                                            # Kubernetes server version
+
+kubectl cluster-info                                       # Gets the lsit of Control pane is running and Coredns is running
+
+kubectl get node                                           # Lists out k8s nodes
+
+kubectl get all                                            # Gets the list of objects(pods ,services,deployments) running
+
+kubectl get service                                        # Lists out k8s services
+
+kubectl get pod                                            # List out the running pods( Pods will come to running state after some time)
+
+kubectl get deployment                                     # Lists out deployment
+
+kubectl get replicaset                                     # Lists out replicaset
+
+kubectl get pod -o wide                                    # Extended information on the same
+
+kubectl get deployment nginx-deployment -o yaml > deployment-status.yaml
+                                                           # Result is written into a file
+														   
+kubectl get pod --watch                                    # You can watch the creation of pod
+
+kubectl get endpoints                                      # Command to see the service tagged to the pod
+
+==================================================================================================================================================================================
+
+kubectl create deployment nginx-deployment --image=nginx   # Deployment creation
+
+kubectl edit deployment nginx-deployment                   # Editing the deployment configuration
+
+kubectl delete deployment nginx-deployment                 # Delete the deployment 
+
+
+kubectl run nginx-pod --image=nginx                        # to run a pod (we did not do port binding hence you cannotsee any output)
+
+kubectl port-forward nginx-pod 8086:80                     # Binding the created pod(with port-forward command if same port is used to listen as that of docker machine , it will give error)	
+
+
+
+kubectl expose pod nginx-pod --type=NodePort --name=nginx-service
+                                                           
+														   # Creating a service and exposing the pod
+kubectl run nginx-pod --image=nginx --port=80              # Adding port to kubectl run command
+
+kubectl apply -f nginx-pod.yaml                            # Creating a Pod defined in Yaml file
+
+kubectl delete -f nginx-pod.yaml                           # deleting a Pod defined in Yaml file
+
+kubectl describe pod nginx-pod                             # Gives more details about pod
+
+kubectl exec -ti nginx-pod bash                            # Interactive terminal(logging) into the container
+
+http://<node IP>:NodePort
+
+curl <node-ip>:<node-port>        # curl <node-ip>:31000  --Accessing app via NodePort
+curl <service-ip>:<service-port>  # curl <svc-ip>:8090    --Accessing app via LoadBalancer
+curl <pod-ip>:<target-port>       # curl <pod-ip>:80      --Accessing app via ClusterIP
+
+==================================================================================================================================================================================
+
+kubectl delete deployment --all                            # Delete all deployments at once
+
+kubectl delete services --all                              # Delete all services at once
+  
+kubectl delete secrets --all                               # Delete all secrets at once
+ 
+kubectl delete configmap --all                             # Delete all configMaps at once
+
+
+
+
+
+echo -n 'admin' | base64                                   # Encrypt the plain text with base64 
+
+
+
+https://gitlab.com/nanuchi/youtube-tutorial-series/-/tree/master/demo-kubernetes-components
+
+
+==================================================================================================================================================================================
+
+Namespaces:
+
+kubectl api-resources --namespaced=true
+
+kubectl get namespace
+
+  kubectl get ns
+
+kubectl create namespace praveen-namespace	
+
+kubectl get --all -n praveen-namespace
+
+kubectl apply -f deployment.yaml --namesapce=praveen-namepsace
+
+kubectl config view --minify | grep namespace             # To check which namespace we are using
+
+kubectl config set-context --current --namespace=my-namespace
+                                                          # to switch to new namespace
+
+
+
+
+kubens
+
+kubens praveen-namespace
+
+

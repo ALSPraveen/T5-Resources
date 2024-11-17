@@ -1,0 +1,240 @@
+Kubernetes is a container orchestration tool developed by Google.It's an open source platform that is used for managing your containerized workloads and services.
+
+(Demand for proper way of managing hundreds of containers)
+
+Features:
+
+1.It can restart containers if they fail(Disaster recovery - backup and restore)
+2.Load balance traffic across your containers
+3.you can dictate the state of the services that need to run 
+4.You can mount different storage systems when it comes to persistence of data.
+5.scale up service whenever you want
+6.Hign availibility
+
+
+
+For kubernetes , you need to have cluster in place
+
+-> minikube will create a kubernetes cluster for you(I node cluster where master and worker runs on same node)
+-> kubectl(command line tool) can be used to interact with the cluster
+
+
+Cluster contains 
+
+1 master node(It will be running control plane components)
+various worker nodes( container based apps will be running on worler nodes)
+
+Master Node:
+1.Manages the worker nodes in the cluster
+2.Schedules the containers that needs to run on the worker nodes
+3.Monitor nodes in the clusters
+
+
+Having multiple nodes increases availability of the app. If in case one app fails , k8s can bring up another app running in another node .
+
+=======================================================================
+                                                                      =
+	********************                      *******************     = 
+	*kube-api-server   *                      *kubelet          *     =
+	********************                      *******************     =
+                                                                      =
+	********************                      *******************     =
+	*etcd              *                      *kube-proxy       *     =    
+	********************                      *******************     =
+
+	********************                      *******************     =
+	*scheduler         *                      *pod              *     =
+	********************                      *******************     =
+
+	********************                      *******************     =
+	*controller manager*                      *Pod              *     =
+	********************                      *******************     =
+	                                                                  =
+	                                                                  =
+	(Master Node)                             (Worker Node1)          =
+	                                                                  =
+=======================================================================
+
+
+
+Kube-api-server :
+
+All the requests that you make on the cluster will actually go through kube-api-server.(*Suppose : k8s , please go and run my app - this req will go through api-server)
+
+etcd:
+Database system that store data in key values pair.Metadata(apps running in cluster , where ,what are running everything data will be stored in etecd)
+
+scheduler:
+It selects nodes to run pods.
+
+Node contoller :
+Manages the nodes. it understands the status of the node.
+
+Kubelet:
+Agent that runs on every node.It is responsible for running containers on your pod.Also responsible for communication between control plane and worker nodes.
+
+Kube-proxy:
+Networking service which enables pods to communication across nodes.
+Virtual network assigns an IP address to each pod.
+
+pod:(Wrapper container - abstarction layer over  containers)
+(reason for abstraction of pod may be to replace the pod whenever necessary/to only interact with k8s layer(pod) and forget docker containers)
+Smallest computational unit k8s.It can have single or multiple container running in it. It can have shared storage and networking services.Pod also uses container runtime for running containers.
+Virtual network assigns an IP address to each pod.
+When pod dies new pod gets created and gets new IP
+
+Service:
+Using service pods get a permanant IP address.It is also a load balancer
+(static ip address with dns name so that you dont have to adjust to end point whenever pod dies)	
+
+Ingress - https://app.com
+     |
+service - https://123.87.78.87:8080
+
+Deployment:
+Blueprint of pods(abstarction layer over pods)
+
+DBs cant be replicated using deployment.
+We need to use stateful set for DBs(take care of Dbs replication)
+
+
+Kubernetes always compares desired state with actual state and based on that it fixes issues.
+
+Kubernetes always updates latest status of the component into configuration file.This information will be take up from etcd
+
+
+
+
+
+
+Namespace Concept in Kubernetes:
+
+-> In K8s you can oraganise resources in namespaces. You can have multiple namespaces in a cluster.
+
+-> It is like a virtual cluster inside of a cluster.
+
+There are four namespaces in k8s:
+
+default                   -- We use this ,
+kube-node-lease           -- It holds info about nodes availibility
+kube-public               -- It contain publically accessible data , it contains configmap which has cluster info (kubectl cluster-info)
+kube-system               -- It is not meant for our use, The componensts that are deployed in this namespace are system processes for master and kubectl for managing
+kubernetes-dashboard      -- shipped automatically with minikube (minikube dashboard)
+
+
+1.Purpose of namespace is when you have multiple replicasets, deployments,services,pods e.t.c very soon your default namepsace filled with all these and difficult to get an overview.
+ 
+in this case , you can create database namespace and group them all  dbs together.
+for monitor you can have prometheus
+for elastic search you can different namespaces	
+
+2.You can have multiple namspaces for multiple envs(staging,dev,acc,prd)
+
+3.Production Blue/Green approach(Blue alrwady active, green next release)
+
+
+By default your namespace in k8s is deafilt namespace, if you want to change it install kubens tool.(you dont have to provide -n flag at the end of every command if you use kubens)
+
+kubens
+
+kubens praveen-namespace
+
+
+
+
+
+Ingress Concept in Kuberenetes:
+
+If you want your app dns names to be like this , https://praveen.com instead of https://<internal service ip>:<port> then you have to use ingress
+
+pod <- service <- ingress <-ingress controller Pod (firt the request reached ingress and it reaches internal service and then the pod)(K8s nginx kubernetes cluster)
+
+You need to have the implementation of ingress controller (evalutes all the rules in ingree yaml file)-> we need to install it. Use kubens tool to install ingress controller
+
+
+Deployment :
+
+containerPort : 80 (Port of on which your container runs)
+
+Service:
+
+Port:8080 (Port on which your service runs)
+targetPort: 80 (service forwards your port to the port on which container is running)
+
+ideally  "containerPort should match targetPort"
+
+
+
+
+
+Pods are ephimeral - can be detroyed frequently ( hence new ip address will be created every time new pods get created)
+
+Services provide a stable ip address through request can get to pods. It provides load balancing and acts as an abstraction layer to pods.
+
+whenever a pod dies , k8s creates and new pod . With the help of selector labels k8s matches the newly created pods to its respective service.Hence ,  anew endpoint will get update to service.
+This way service gives a sustainable solution for applications to be running even when pods die. 
+
+Pods are ephimeral and it has different reasons,
+
+1.Whenever a node fails or unreachable , k8s shifts these pods to other healthy nodes by killing the old ones and creating new ones.
+2.Liveness and readiness probes are used to monitor the health of pods. If a pod fails a health check, it can be restarted or replaced.
+3.During rolling updates, Kubernetes replaces old pods with new ones to seamlessly update applications without downtime. This process involves terminating old pods and starting new pods with the updated configuration or image.
+4.If an update fails, Kubernetes can rollback to a previous version by terminating the current pods and creating new ones based on the previous configuration
+5.Horizontal Scaling: When scaling out an application, Kubernetes creates additional pods to handle the increased load. Similarly, when scaling in, it terminates excess pods.
+6.Elasticity: This elasticity ensures that the cluster can adapt to varying workloads, but it also means that individual pods may have short lifespans.
+
+
+
+ClusterIP - Requests will go through clusterIP service by matching the endpoints(IP addresss) of the pods. Use ingress to expose 
+Headless  - If the request wants to a selected pod instaed of random replicated pod , we use Headless Service.Another use case is if pods wants to communicate
+            with each other without the use of service.We use this specially in the case of stateful sets(replicas of databases like mysql,mongodb,elastic search)
+(cluster+headless)
+            The way we make Headless is basically make clusterIP to none in spec section of service
+    
+             
+            How to get IP address of specific pod
+            clusterIP: None
+            1.Through making API calls to k8s cluster(inefficient)
+            2.Through DNS lookup 			
+			
+Nodeport(Not secure as it opens browser ports) : Will get access to external traffic through static port assigned in each worker node(30000-32767) (Cluster + Nodeport)
+
+LoadBalancer: service is externally available through loadbalancer cloud providers(it is mix of cluster + Nodeport services)
+
+
+
+=================================================================================================================================================================================
+
+Helm,
+
+It is a pacakge manager for kubernetes. It is used to package yaml files and distribute them in public and private repositories.
+
+Bundle of yam file is called Helm chart
+
+Complex tech stacks like, have helm charts available publically 
+ -> Databases(mongodb , Elastic search)
+ -> Prometheus for monitoring
+ 
+Additionally Heml can act as a templating engine.
+ ->template yaml file
+ -> Values yaml file
+ 
+Additionally we can use Helm charts in different environments
+
+Folder structure 
+
+ my chart/    ---name of chart
+   chart.yaml  --- meta dat info of the chart
+   values.yaml --- values for the templates defined in templates folder
+   charts/     --- charts dependencies
+   templates/  --- actual template files are stored
+   
+   helm install <chartname>
+   helm install --values=values.yaml <chartname>
+
+
+
+
+
+
+

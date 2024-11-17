@@ -1,0 +1,38 @@
+Install minikube to set up the kubernetes cluster ,
+
+	https://minikube.sigs.k8s.io/docs/start/
+
+
+Install Kubectl tool , a command line tool, used to interact with your kubernetes cluster.
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
+
+Minikube :(local)
+
+Minikube is a tool that enables you to run a single-node Kubernetes cluster locally on your machine. 
+It is primarily used for development and testing purposes. Minikube creates a virtual machine on your local system and sets up a Kubernetes cluster within that virtual machine. 
+This allows developers to experiment with Kubernetes features and deploy applications in a local environment without needing access to a full-scale Kubernetes cluster.
+
+
+Kubectl:(local or remote)
+
+kubectl is the command-line interface (CLI) tool used to interact with Kubernetes clusters. 
+It allows you to perform various operations on Kubernetes clusters, such as deploying and managing applications, inspecting cluster resources, scaling deployments, and debugging issues. 
+With kubectl, you can issue commands to Kubernetes API server to perform actions such as creating, updating, or deleting resources within a Kubernetes cluster.
+
+
+
+To summarize ,Minikube is used to set up a local Kubernetes cluster on your machine, while kubectl is the command-line interface (CLI) tool used to interact with that cluster.
+
+
+To access a service in minikube user below command ,
+
+minikube tunnel
+
+(https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel)
+
+
+Services of type LoadBalancer can be exposed via the minikube tunnel command. 
+It must be run in a separate terminal window to keep the LoadBalancer running. 
+Ctrl-C in the terminal can be used to terminate the process at which time the network routes will be cleaned up
